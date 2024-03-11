@@ -1,0 +1,44 @@
+{
+  "tests": [
+    {
+      "name": "groupAnagramsTest1",
+      "setup": "gradle clean",
+      "run": "gradle test --tests LabElevenTests.groupAnagramsTest1",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": null
+    },
+    {
+      "name": "groupAnagramsTest2",
+      "setup": "",
+      "run": "gradle test --tests LabElevenTests.groupAnagramsTest2",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": null
+    },
+    {
+      "name": "groupAnagramsTest3",
+      "setup": "",
+      "run": "gradle test --tests LabElevenTests.groupAnagramsTest3",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": null
+    },
+    {
+      "name": "groupAnagramsTest4",
+      "setup": "",
+      "run": "gradle test --tests LabElevenTests.groupAnagramsTest4",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": null
+    }
+  ]
+}
