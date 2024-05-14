@@ -1,19 +1,60 @@
-name: GitHub Classroom Workflow
-
-on:
-  - push
-  - workflow_dispatch
-
+name: Autograding Tests
+'on':
+- workflow_dispatch
+- repository_dispatch
 permissions:
   checks: write
   actions: read
   contents: read
-
 jobs:
-  build:
-    name: Autograding
+  run-autograding-tests:
     runs-on: ubuntu-latest
     if: github.actor != 'github-classroom[bot]'
     steps:
-      - uses: actions/checkout@v4
-      - uses: education/autograding@v1
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: groupAnagramsTest1
+      id: groupanagramstest1
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: groupAnagramsTest1
+        setup-command: gradle clean
+        command: gradle test --tests LabElevenTests.groupAnagramsTest1
+        timeout: 1
+        max-score: 25
+    - name: groupAnagramsTest2
+      id: groupanagramstest2
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: groupAnagramsTest2
+        setup-command: ''
+        command: gradle test --tests LabElevenTests.groupAnagramsTest2
+        timeout: 1
+        max-score: 25
+    - name: groupAnagramsTest3
+      id: groupanagramstest3
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: groupAnagramsTest3
+        setup-command: ''
+        command: gradle test --tests LabElevenTests.groupAnagramsTest3
+        timeout: 1
+        max-score: 25
+    - name: groupAnagramsTest4
+      id: groupanagramstest4
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: groupAnagramsTest4
+        setup-command: ''
+        command: gradle test --tests LabElevenTests.groupAnagramsTest4
+        timeout: 1
+        max-score: 25
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        GROUPANAGRAMSTEST1_RESULTS: "${{steps.groupanagramstest1.outputs.result}}"
+        GROUPANAGRAMSTEST2_RESULTS: "${{steps.groupanagramstest2.outputs.result}}"
+        GROUPANAGRAMSTEST3_RESULTS: "${{steps.groupanagramstest3.outputs.result}}"
+        GROUPANAGRAMSTEST4_RESULTS: "${{steps.groupanagramstest4.outputs.result}}"
+      with:
+        runners: groupanagramstest1,groupanagramstest2,groupanagramstest3,groupanagramstest4
